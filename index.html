@@ -20,8 +20,10 @@
             <input type="range" id="mask" name="mask" min="0" max="100" x-model="maskWidth" class="full-width" />
             <div class="mask-for-range-slider">
                 <div class="mask" x-bind:style="{ left: maskWidth + '%' }"></div>
-                <button id="maskButton" hx-get="/partials/test.html" hx-target="main" hx-swap="beforeend">It
-                    works!</button>
+                <button id="maskButton" hx-get="/partials/dropdown.html" hx-target="main" hx-swap="beforeend"
+                    hx-on::after-request="this.setAttribute('disabled', 'disabled')">
+                    It works!
+                </button>
             </div>
         </section>
     </main>

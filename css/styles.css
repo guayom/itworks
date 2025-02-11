@@ -50,6 +50,33 @@ section {
 .row {
     display: flex;
     flex-wrap: wrap;
-    column-gap: 10px;
+    column-gap: 20px;
     justify-content: center;
+    align-items: center;
+}
+
+.grid3x3 {
+    display: grid;
+    grid-template-columns: repeat(3, 15px);
+    grid-template-rows: repeat(3, 15px);
+    gap: 5px;
+    margin: 20px 0;
+}
+
+.pattern-cell {
+    border: 1px solid black;
+}
+
+.checkbox-cell, .pattern-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    input {
+        margin: 0;
+    }
+}
+
+.pattern-cell.filled {
+    background-color: black;
 }

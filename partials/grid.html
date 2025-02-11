@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown with Buttons</title>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+</head>
+
+<body>
+
+    <section x-data="{
+        checkboxes: Array(9).fill(false),
+        isCorrect() {
+            return this.checkboxes[0] && 
+                   this.checkboxes[6] && 
+                   !this.checkboxes.slice(1,6).some(x => x) && 
+                   !this.checkboxes[7] && 
+                   !this.checkboxes[8];
+        }
+    }" class="row">
+        <div class="grid3x3">
+            <div class="pattern-cell filled"></div>
+            <div class="pattern-cell"></div>
+            <div class="pattern-cell"></div>
+            <div class="pattern-cell"></div>
+            <div class="pattern-cell"></div>
+            <div class="pattern-cell"></div>
+            <div class="pattern-cell filled"></div>
+            <div class="pattern-cell"></div>
+            <div class="pattern-cell"></div>
+        </div>
+
+        <div class="grid3x3">
+            <template x-for="(checked, index) in checkboxes" :key="index">
+                <div class="checkbox-cell">
+                    <input type="checkbox" x-model="checkboxes[index]">
+                </div>
+            </template>
+        </div>
+
+        <div>
+            <button :disabled="!isCorrect()">It works!</button>
+        </div>
+    </section>
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown with Buttons</title>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+</head>
+
+<body>
+    <section x-data="{ selectedButton: '' }" class="row">
+
+        <select x-model="selectedButton" id="buttonSelect">
+            <option value="">Select a button</option>
+            <option value="button1">Button 1</option>
+            <option value="button2">Button 2</option>
+            <option value="button3">Button 3</option>
+        </select>
+
+        <div>
+            <button :disabled="selectedButton !== 'button1'" hx-get="/partials/grid.html" hx-target="main"
+                hx-swap="beforeend" hx-on::after-request="
+                    if(event.detail.successful) {
+                        this.setAttribute('disabled', 'disabled');
+                        document.getElementById('buttonSelect').setAttribute('disabled', 'disabled');
+                    }">
+                <span x-text="selectedButton === 'button1' ? 'It works' : 'Doesn\'t work'"></span>
+            </button>
+            <button :disabled="selectedButton !== 'button2'" hx-get="/partials/grid.html" hx-target="main"
+                hx-swap="beforeend" hx-on::after-request="
+                    if(event.detail.successful) {
+                        this.setAttribute('disabled', 'disabled');
+                        document.getElementById('buttonSelect').setAttribute('disabled', 'disabled');
+                    }">
+                <span x-text="selectedButton === 'button2' ? 'It works' : 'Doesn\'t work'"></span>
+            </button>
+            <button :disabled="selectedButton !== 'button3'" hx-get="/partials/grid.html" hx-target="main"
+                hx-swap="beforeend" hx-on::after-request="
+                    if(event.detail.successful) {
+                        this.setAttribute('disabled', 'disabled');
+                        document.getElementById('buttonSelect').setAttribute('disabled', 'disabled');
+                    }">
+                <span x-text="selectedButton === 'button3' ? 'It works' : 'Doesn\'t work'"></span>
+            </button>
+        </div>
+    </section>
+</body>
+
+</html>
