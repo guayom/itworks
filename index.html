@@ -9,16 +9,19 @@
     <link rel="stylesheet" href="/css/styles.css">
     <!-- If you are interested in looking at the source code, take a look at the GITHUB REPO:  -->
     <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
 </head>
 
 <body>
     <main>
         <h1>It works!</h1>
-        <section x-data="{ maskWidth: 0 }">
+        <section x-data="{ maskWidth: 0 }" x-init="maskWidth = localStorage.getItem('maskWidth') || 0"
+            x-effect="localStorage.setItem('maskWidth', maskWidth)">
             <input type="range" id="mask" name="mask" min="0" max="100" x-model="maskWidth" class="full-width" />
             <div class="mask-for-range-slider">
                 <div class="mask" x-bind:style="{ left: maskWidth + '%' }"></div>
-                <button>It works!</button>
+                <button id="maskButton" hx-get="/partials/test.html" hx-target="main" hx-swap="beforeend">It
+                    works!</button>
             </div>
         </section>
     </main>

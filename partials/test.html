@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown with Buttons</title>
+    <script src="//unpkg.com/alpinejs" defer></script>
+</head>
+
+<body>
+    <section x-data="{ selectedButton: '' }" class="row">
+        <select x-model="selectedButton">
+            <option value="">Select a button</option>
+            <option value="button1">Button 1</option>
+            <option value="button2">Button 2</option>
+            <option value="button3">Button 3</option>
+        </select>
+
+        <div>
+            <button :disabled="selectedButton !== 'button1'">
+                <span x-text="selectedButton === 'button1' ? 'It works' : 'Doesn\'t work'"></span>
+            </button>
+            <button :disabled="selectedButton !== 'button2'">
+                <span x-text="selectedButton === 'button2' ? 'It works' : 'Doesn\'t work'"></span>
+            </button>
+            <button :disabled="selectedButton !== 'button3'">
+                <span x-text="selectedButton === 'button3' ? 'It works' : 'Doesn\'t work'"></span>
+            </button>
+        </div>
+    </section>
+</body>
+
+</html>
